@@ -1,24 +1,20 @@
 require('dotenv').config();
 
 const express = require('express');
+const path = require('path');
 const db = require('./conexao');
 
 const app = express();
 const PORT = Number(process.env.PORT || 5000);
 
-app.use(express.static('public')); 
+app.use(express.static(path.join(__dirname, 'public'))); 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Serve a página HTML na raiz
 app.get('/', (req, res) => {
-  res.json({
-    api: 'Funcionários',
-    endpoints: {
-      GET: '/funcionarios',
-      POST: '/funcionarios/cadastrar',
-    },
-  });
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.get('/funcionarios', async (req, res) => {
