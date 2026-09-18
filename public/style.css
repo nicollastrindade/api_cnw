@@ -1,0 +1,110 @@
+/* Configurações Globais Estilo Web 1.0 */
+body {
+  background-color: #0d1117;
+  background-image: radial-gradient(#1f293d 1px, transparent 0);
+  background-size: 10px 10px;
+  color: #00ffcc;
+  font-family: "Courier New", Courier, monospace;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Caixa estilo Janela Windows/GeoCities */
+.window {
+  width: 100%;
+  max-width: 480px;
+  background-color: #161b22;
+  border: 3px outset #415a77;
+  box-shadow: 5px 5px 0px #000000;
+}
+
+.title-bar {
+  background: linear-gradient(90deg, #000080, #1084d0);
+  color: #ffffff;
+  padding: 4px 8px;
+  font-weight: bold;
+  font-size: 14px;
+  border-bottom: 2px solid #000000;
+}
+
+.content {
+  padding: 15px;
+}
+
+/* Título com brilho retrô */
+.glow-title {
+  font-size: 20px;
+  text-align: center;
+  color: #ff007f;
+  text-shadow: 2px 2px #55002b;
+  margin-top: 0;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+/* Formatos de campo */
+.field {
+  margin-bottom: 12px;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  color: #e0e6ed;
+  margin-bottom: 4px;
+}
+
+input, select {
+  width: 100%;
+  padding: 6px;
+  background-color: #0d1117;
+  color: #00ffcc;
+  border: 2px inset #415a77;
+  font-family: "Courier New", Courier, monospace;
+  box-sizing: border-box;
+}
+
+input:focus, select:focus {
+  outline: none;
+  background-color: #1f293d;
+}
+
+/* Botão estilo clássico */
+.retro-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 8px;
+  background-color: #21262d;
+  color: #ffff00;
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+  border: 3px outset #415a77;
+  cursor: pointer;
+}
+
+.retro-btn:active {
+  border-style: inset;
+  background-color: #161b22;
+}
+
+/* Mensagens de Retorno */
+#mensagem {
+  margin-top: 15px;
+  padding: 8px;
+  font-size: 12px;
+  word-break: break-all;
+}
+
+.status-success {
+  color: #00ff00;
+  border: 1px dashed #00ff00;
+  background-color: #002200;
+}
+
+.status-error {
+  color: #ff3333;
+  border: 1px dashed #ff3333;
+  background-color: #220000;
+}

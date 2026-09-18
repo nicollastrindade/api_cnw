@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>::: Sistema de Funcionários 2000 :::</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="window">
+    <div class="title-bar">
+      <span>★ Cadastro_Funcionarios.exe ★</span>
+    </div>
+
+    <div class="content">
+      <h1 class="glow-title">SISTEMA DE CADASTRO</h1>
+      
+      <form id="formCadastrar">
+        <div class="field">
+          <label for="nome">Nome Completo:</label>
+          <input type="text" id="nome" required>
+        </div>
+
+        <div class="field">
+          <label for="cargo">Cargo:</label>
+          <input type="text" id="cargo" required>
+        </div>
+
+        <div class="field">
+          <label for="salario">Salário (R$):</label>
+          <input type="number" id="salario" step="0.01" required>
+        </div>
+
+        <div class="field">
+          <label for="data_contratacao">Data de Contratação:</label>
+          <input type="date" id="data_contratacao" required>
+        </div>
+
+        <div class="field">
+          <label for="departamento_id">Departamento:</label>
+          <select id="departamento_id" required>
+            <option value="1">1 - Tecnologia</option>
+            <option value="2">2 - Recursos Humanos</option>
+            <option value="3">3 - Financeiro</option>
+          </select>
+        </div>
+
+        <button type="submit" class="retro-btn">[ CADASTRAR ]</button>
+      </form>
+
+      <div id="mensagem"></div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('formCadastrar');
+    const mensagem = document.getElementById('mensagem');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const dados = {
+        nome: document.getElementById('nome').value,
+        cargo: document.getElementById('cargo').value,
+        salario: Number(document.getElementById('salario').value),
+        data_contratacao: document.getElementById('data_contratacao').value,
+        departamento_id: Number(document.getElementById('departamento_id').value)
+      };
+
+      try {
+        const response = await fetch('/funcionarios/cadastrar', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dados)
+        });
+
+        const resultado = await response.json();
+
+        if (response.ok) {
+          mensagem.className = 'status-success';
+          mensagem.textContent = `>> SUCESSO: Funcionário ${resultado.nome} salvo (ID: ${resultado.id})!`;
+          form.reset();
+        } else {
+          mensagem.className = 'status-error';
+          mensagem.textContent = `>> ERRO: ${resultado.erro || 'Falha no envio.'}`;
+        }
+      } catch (err) {
+        mensagem.className = 'status-error';
+        mensagem.textContent = '>> ERRO: Falha ao conectar no servidor.';
+      }
+    });
+  </script>
+</body>
+</html>
